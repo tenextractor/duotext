@@ -2,7 +2,7 @@
 import './style.css'
 
 document.addEventListener("mouseup", async () => {
-  const selection = window.getSelection()?.toString();
+  const selection = window.getSelection()?.toString().toLowerCase();
   const selectedDiv = window.getSelection()?.anchorNode;
 
   if (selection && selectedDiv && selectedDiv.parentElement?.classList.contains("right")) {
@@ -31,7 +31,7 @@ function wordJsonToHtml(wordJson: object): string { //convert the json data to h
   if (wordJson.error !== undefined)
     innerHTML = "Error";
   else {
-    innerHTML = wordJson.la.map((object) => {
+    innerHTML = wordJson.other.map((object) => {
       return `<b>${object.partOfSpeech}</b><br>
       ${object.definitions.map(definition => {
         const newDefinition = definition.definition.replaceAll("<a", "<a class=\"wiktionary\"");
